@@ -4,6 +4,8 @@ import time
 class LEDBar:
   def __init__(self, hours):
     self.hours = hours
+    self.pins = []
+    self.active_pins = []
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(7, GPIO.OUT)
 
