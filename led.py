@@ -10,12 +10,13 @@ class LEDBar:
     GPIO.setwarnings(False)
     for key, val in self.leds.items():
       GPIO.setup(val, GPIO.OUT)
-    self.determine_leds(self.minutes)
+    #self.determine_leds()
 
-  def determine_leds(self, minutes):
-	self.turn_on_led(1)
-	time.sleep(2)
-	self.turn_off_led(1)
+  def determine_leds(self):
+    # turn on LEDs 1 thru (minutes / 180)
+    highest = int(self.minutes / 180)
+    for led in range(0, highest + 1):
+      self.turn_on_led(led)
 
   def turn_on_led(self, LED):
     GPIO.output(self.leds[LED], GPIO.HIGH)
